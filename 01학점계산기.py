@@ -35,11 +35,14 @@ while True:
     match selection:
         case 1:
             subject_name = input("과목명을 입력하세요:\n")
-            grand_point = float(input("학점을 입력하세요:\n"))
-            grade_point = input("평점을 입력하세요:\n")
-            subject_dict[subject_key] = subject_name
-            course_list.append((subject_key, grand_point, grade_point))
-            subject_key += 1
+            if subject_name in subject_dict.values():
+                print('이미 입력되었습니다.')
+            else:
+                grand_point = float(input("학점을 입력하세요:\n"))
+                grade_point = input("평점을 입력하세요:\n")
+                subject_dict[subject_key] = subject_name
+                course_list.append((subject_key, grand_point, grade_point))
+                subject_key += 1
         case 2:
             for temp_tuple1 in course_list:
                 print('[' + subject_dict[temp_tuple1[0]] + ']', str(int(temp_tuple1[1])) + '학점:', temp_tuple1[2])
@@ -57,8 +60,8 @@ while True:
 
             gpa_for_submit = round(total_for_submit / application_for_submit, 2)
             gpa_for_open = round(total_for_open / application_for_open, 2)
-            print('제출용:', str(total_for_submit) + '학점', '(GPA:', str(gpa_for_submit) + ')')
-            print('열람용:', str(total_for_open) + '학점', '(GPA:', str(gpa_for_open) + ')')
+            print('제출용:', str(application_for_submit) + '학점', '(GPA:', str(gpa_for_submit) + ')')
+            print('열람용:', str(application_for_open) + '학점', '(GPA:', str(gpa_for_open) + ')')
             print('\n프로그램을 종료합니다.')
             break
         case _:
